@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model FnbuEdition {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  ano       String
+  edicao    String
+  partidas  Partida[]
+}
+
+model Partida {
+  id       Int         @id @default(autoincrement())
+  modo     Int
+  vencedor String?     @db.VarChar(35)
+  edicaoId String
+  premio   Float
+  edicao   FnbuEdition @relation(fields: [edicaoId], references: [id])
+}

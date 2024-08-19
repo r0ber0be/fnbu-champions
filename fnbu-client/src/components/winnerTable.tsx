@@ -23,6 +23,13 @@ type Edicao = {
 }
 export function WinnersTable(props: Edicao) {
   const { edicao, partidas } = props
+ 
+  if(!partidas) {
+    return (
+      <div className="text-center mt-28 text-2xl md:text-4xl">Aconteceu um imprevisto e não foi possível carregar a tabela. Por favor, tente novamente mais tarde.</div>
+    )
+  }
+
   return (
     <div className="justify-center">
       <Table className="max-w-screen-2xl shadow-lg">

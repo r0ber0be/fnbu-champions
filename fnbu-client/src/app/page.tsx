@@ -2,7 +2,7 @@ import { WinnersTable } from "@/components/winnerTable";
 
 export default async function Home() {
   const edicaorecente = await fetch('http://localhost:5000/api/fnbu/edicao-recente', {
-    cache: 'no-cache'
+    cache: 'reload'
   }).then(data => { 
     return data.json() 
   }).catch((err) => console.log('erro aqui:', err))

@@ -20,11 +20,15 @@ type Edicao = {
 
 export default async function EdicoesFNBU() {
   const edicoes = await fetch('http://localhost:5000/api/fnbu/edicoes', {
-    cache: "no-cache"
+    cache: "reload"
   }).then(data => { return data.json() }).catch((err) => console.log('error', err))
   
   if(!edicoes) {
     return <div className="text-center text-2xl sm:text-4xl mt-56 align-middle">Nenhuma edição encontrada</div>
+  }
+
+  if(edicoes.statusCode === 500) {
+    return <div className="text-center text-2xl sm:text-4xl mt-56 align-middle">Erro interno do servidor</div>
   }
 
   return (
